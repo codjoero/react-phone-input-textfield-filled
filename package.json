@@ -1,5 +1,5 @@
 {
-  "name": "react-phone-input-labelled",
+  "name": "react-phone-input-textfield-filled",
   "version": "1.0.1",
   "description": "A react component with a material-UI feel to format phone numbers",
   "main": "dist/lib.js",
@@ -12,13 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codjoero/react-phone-input-labelled.git"
+    "url": "git+https://github.com/codjoero/react-phone-input-textfield-filled.git"
   },
   "keywords": [
     "react",
     "phone",
     "material-UI",
     "label",
+    "filled",
     "format",
     "number",
     "input",
@@ -37,9 +38,9 @@
   "author": "rownee2001@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/codjoero/react-phone-input-labelled/issues"
+    "url": "https://github.com/codjoero/react-phone-input-textfield-filled/issues"
   },
-  "homepage": "https://github.com/codjoero/react-phone-input-labelled.git",
+  "homepage": "https://github.com/codjoero/react-phone-input-textfield-filled.git",
   "jest": {
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/fileMock.js",
@@ -69,6 +70,8 @@
     "webpack-merge": "^4.2.1"
   },
   "peerDependencies": {
+    "@material-ui/core": "^4.9.13",
+    "@material-ui/icons": "^4.9.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
@@ -78,8 +81,6 @@
     "lodash.memoize": "^4.1.2",
     "lodash.reduce": "^4.6.0",
     "lodash.startswith": "^4.2.1",
-    "prop-types": "^15.7.2",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "prop-types": "^15.7.2"
   }
 }

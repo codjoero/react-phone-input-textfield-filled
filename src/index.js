@@ -5,7 +5,7 @@ import memoize from "lodash.memoize";
 import reduce from "lodash.reduce";
 import startsWith from "lodash.startswith";
 import classNames from "classnames";
-
+import TextField from '@material-ui/core/TextField'
 import countryData from "./country_data.js";
 import "./style.less";
 
@@ -15,6 +15,8 @@ class PhoneInput extends React.Component {
     onlyCountries: PropTypes.arrayOf(PropTypes.string),
     preferredCountries: PropTypes.arrayOf(PropTypes.string),
     defaultCountry: PropTypes.string,
+    helperText: PropTypes.string,
+    darkMode: PropTypes.bool,
 
     value: PropTypes.string,
     label: PropTypes.string,
@@ -36,6 +38,7 @@ class PhoneInput extends React.Component {
     buttonClass: PropTypes.string,
     dropdownClass: PropTypes.string,
     searchClass: PropTypes.string,
+    darkModeClass: PropTypes.string,
 
     autoFormat: PropTypes.bool,
     disableAreaCodes: PropTypes.bool,
@@ -72,9 +75,11 @@ class PhoneInput extends React.Component {
     onlyCountries: [],
     preferredCountries: [],
     defaultCountry: "",
+    helperText: " ",
+    darkMode: false,
 
     value: "",
-    label: "Phone #",
+    label: "Mobile",
     placeholder: "+1 (702) 123-4567",
     searchPlaceholder: "search",
     flagsImagePath: "./flags.png",
@@ -94,6 +99,7 @@ class PhoneInput extends React.Component {
     buttonClass: "",
     dropdownClass: "",
     searchClass: "",
+    darkModeClass: "textField-dark-mode",
 
     autoFormat: true,
     disableAreaCodes: false,
@@ -573,8 +579,8 @@ class PhoneInput extends React.Component {
   cursorToEnd = () => {
     const input = this.numberInputRef;
     input.focus();
-    const len = input.value.length;
-    input.setSelectionRange(len, len);
+    const len = input.value && input.value.length;
+    input.value && input.setSelectionRange(len, len);
   };
 
   getElement = index => {
@@ -712,7 +718,7 @@ class PhoneInput extends React.Component {
         const lastChar = formattedNumber.charAt(formattedNumber.length - 1);
 
         if (lastChar == ")") {
-          this.numberInputRef.setSelectionRange(
+          this.numberInputRef.value && this.numberInputRef.setSelectionRange(
             formattedNumber.length - 1,
             formattedNumber.length - 1
           );
@@ -720,7 +726,7 @@ class PhoneInput extends React.Component {
           caretPosition > 0 &&
           oldFormattedText.length >= formattedNumber.length
         ) {
-          this.numberInputRef.setSelectionRange(caretPosition, caretPosition);
+          this.numberInputRef.value && this.numberInputRef.setSelectionRange(caretPosition, caretPosition);
         }
 
         if (this.props.onChange)
@@ -1051,13 +1057,14 @@ class PhoneInput extends React.Component {
     });
 
     const dashedLi = <li key={"dashes"} className="divider" />;
-    // let's insert a dashed line in between preffered countries and the rest
+    // let's insert a dashed line in between preferred countries and the rest
     preferredCountries.length > 0 &&
       countryDropdownList.splice(preferredCountries.length, 0, dashedLi);
 
     const dropDownClasses = classNames({
       [this.props.dropdownClass]: true,
       "country-list": true,
+      "country-list-dark": this.props.darkMode,
       hide: !showDropdown
     });
 
@@ -1116,9 +1123,14 @@ class PhoneInput extends React.Component {
     const { selectedCountry, showDropdown, formattedNumber } = this.state;
     const { disableDropdown, renderStringAsFlag } = this.props;
 
-    const arrowClasses = classNames({ arrow: true, up: showDropdown });
+    const arrowClasses = classNames({
+      arrow: true,
+      up: showDropdown,
+      "arrow-dark": this.props.darkMode
+    });
     const inputClasses = classNames({
       [this.props.inputClass]: true,
+      [this.props.darkModeClass]: this.props.darkMode,
       "form-control": true,
       "invalid-number": !this.props.isValid(formattedNumber.replace(/\D/g, ""))
     });
@@ -1136,7 +1148,7 @@ class PhoneInput extends React.Component {
         style={this.props.containerStyle}
         onKeyDown={this.handleKeydown}
       >
-        <label className={this.props.labelClass} style={this.props.labelStyle}>
+        {/* <label className={this.props.labelClass} style={this.props.labelStyle}>
           {this.props.label} {this.props.required && "*"}
         </label>
         <input
@@ -1153,6 +1165,27 @@ class PhoneInput extends React.Component {
           placeholder={this.props.placeholder}
           disabled={this.props.disabled}
           type="tel"
+          {...this.props.inputExtraProps}
+        /> */}
+
+        <TextField
+          variant="filled"
+          size="small"
+          className={inputClasses}
+          id="phone-form-control"
+          style={this.props.inputStyle}
+          onChange={this.handleInput}
+          onClick={this.handleInputClick}
+          onFocus={this.handleInputFocus}
+          onBlur={this.handleInputBlur}
+          value={formattedNumber}
+          label={this.props.label}
+          ref={el => (this.numberInputRef = el)}
+          onKeyDown={this.handleInputKeyDown}
+          placeholder={this.props.placeholder}
+          disabled={this.props.disabled}
+          type="tel"
+          helperText={this.props.helperText}
           {...this.props.inputExtraProps}
         />
 

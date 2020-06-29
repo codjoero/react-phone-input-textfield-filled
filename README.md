@@ -1,6 +1,6 @@
-# React-Phone-Input-labelled
+# React-Phone-Input-TextField-filled
 
-[react-phone-input-2](https://github.com/bl00mber/react-phone-input-2) with Material-UI 'like' label
+[react-phone-input-2](https://github.com/bl00mber/react-phone-input-2) with Material-UI's "filled" variant.
 
 Highly customizable phone input component with auto formatting.
 
@@ -15,14 +15,14 @@ Highly customizable phone input component with auto formatting.
 ## Installation
 
 ```shell-script
-npm install react-phone-input-labelled --save
+npm install react-phone-input-textfield-filled --save
 ```
 
 ## Usage
 
 ```jsx
-import PhoneInput from "react-phone-input-labelled";
-import "react-phone-input-labelled/dist/style.css";
+import PhoneInput from "react-phone-input-textfield-filled";
+import "react-phone-input-textfield-filled/dist/style.css";
 
 <PhoneInput
   defaultCountry={"us"}

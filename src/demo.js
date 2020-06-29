@@ -140,6 +140,23 @@ class Demo extends React.Component {
         <div
           style={{
             display: "inline-block",
+            verticalAlign: "top",
+            backgroundColor: "#424242",
+            paddingBottom: "40px",
+          }}
+        >
+          <p style={{ color: '#797979'}}>v1.2.1</p>
+          <p style={{ color: '#797979'}}>Dark mode</p>
+          <PhoneInput
+            defaultCountry="ng"
+            preferredCountries={["ng", "ug"]}
+            required
+            darkMode
+          />
+        </div>
+        <div
+          style={{
+            display: "inline-block",
             marginLeft: "40px",
             verticalAlign: "top",
             marginTop: "35px"
