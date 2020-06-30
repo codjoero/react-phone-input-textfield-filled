@@ -1,6 +1,6 @@
 {
   "name": "react-phone-input-textfield-filled",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A react component with a material-UI feel to format phone numbers",
   "main": "dist/lib.js",
   "scripts": {
