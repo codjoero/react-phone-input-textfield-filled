@@ -1148,28 +1148,9 @@ class PhoneInput extends React.Component {
         style={this.props.containerStyle}
         onKeyDown={this.handleKeydown}
       >
-        {/* <label className={this.props.labelClass} style={this.props.labelStyle}>
-          {this.props.label} {this.props.required && "*"}
-        </label>
-        <input
-          className={inputClasses}
-          id="phone-form-control"
-          style={this.props.inputStyle}
-          onChange={this.handleInput}
-          onClick={this.handleInputClick}
-          onFocus={this.handleInputFocus}
-          onBlur={this.handleInputBlur}
-          value={formattedNumber}
-          ref={el => (this.numberInputRef = el)}
-          onKeyDown={this.handleInputKeyDown}
-          placeholder={this.props.placeholder}
-          disabled={this.props.disabled}
-          type="tel"
-          {...this.props.inputExtraProps}
-        /> */}
-
         <TextField
           variant="filled"
+          fullWidth
           size="small"
           className={inputClasses}
           id="phone-form-control"
